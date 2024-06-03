@@ -1,0 +1,210 @@
+* {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --major-color-s: #ed6b5b;
+    --major-color-n: #edb45b;
+    --major-color-f: #ed5b94;
+    --oppos-color-f: #5bedb4;
+    --minor-color-s: #f9ac68;
+    --minor-color-n: #f9f468;
+    --minor-color-f: #f9686c;
+    --accord-color-s: #3a3e59;
+    --accord-color-n: #453a59;
+    --accord-color-f: #3a4d59;
+    
+    --default-width: 300px;
+    --default-height: 200px;
+    --default-br: 10px;
+}
+
+
+/* 
+#ed6b5b	
+#edb45b	
+#ed5b94 - красый
+#3a3e59	
+#453a59	
+#3a4d59 - темный синий
+#f9ac68	
+#f9f468	
+#f9686c - нежный желтый
+#ece6ce	
+#e3ecce	
+#ecd7ce - блеклый желтый
+
+
+*/
+body {
+    background-color: var(--accord-color-n);    
+    text-align: center;
+    position: relative;
+}
+
+.app {    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;   
+    position: relative; 
+    padding: 35px;
+}   
+    .app-title {
+        color: var(--minor-color-n);
+        margin: 40px;
+    }
+    .add-tab-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: var(--default-height);
+        border-radius: var(--default-br);
+        background-color: var(--major-color-n);
+        color: var(--minor-color-n);    
+        font-size: 50px;
+        transition: background-color 150ms ease-in-out;
+        cursor: pointer;
+        }
+        .add-tab-btn:hover {
+            background-color: var(--major-color-f);
+    }
+    .tabs-window {
+        display: grid;
+        margin: 0 auto;
+        width: 100%;
+        grid-template-columns: repeat(auto-fill, minmax(var(--default-width), 1fr));
+        grid-row-gap: 10px;
+        grid-column-gap: 10px;
+        }
+        .tabs-window_el {
+            position: relative;    
+            height: var(--default-height);
+            border-radius: var(--default-br);    
+            background-color: var(--major-color-f);
+            transition: all 150ms ease-in-out;    
+        }
+        .tabs-window_el:hover {
+            background-color: var(--major-color-n);
+        }
+        .tabs-window_el-link {
+            text-decoration: none;
+            color: white;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .tabs-window_el-title {
+            color: var(--minor-color-n);
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        #tabsWindowRemoveEl,
+        .add-tab-popup #addTabPopupClose,
+        .add-tab-popup #addTabPopupDone {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            width: 25px;
+            height: 25px;
+            border-radius: 10px;
+            background-color: var(--minor-color-n);
+            cursor: pointer;
+        }
+        #tabsWindowRemoveEl:hover,
+        .add-tab-popup #addTabPopupClose:hover,
+        .add-tab-popup #addTabPopupDone:hover {
+            background-color: var(--minor-color-f);    
+        }
+        .tabs-window_el #tabsWindowRemoveEl{
+            transition: all 150ms ease-in-out;
+            opacity: 0;
+        }
+        .tabs-window_el:hover #tabsWindowRemoveEl{
+            opacity: 1;
+        }
+        .add-tab-popup {
+            position: fixed;
+            left: 50%;
+            top: 20%;
+            transform: translateX(-50%);
+            width: calc(2 * var(--default-width));
+            height:calc(2 *  var(--default-height));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20%;
+            background: var(--major-color-n);
+            z-index: 20;
+        }
+        .add-tab-popup input {
+            width: calc(1.65 * var(--default-width));
+            height:calc(0.35 *  var(--default-height));
+            padding: 10px 20px;
+            box-sizing: border-box;
+            font-size: 30px;
+            outline: 0;    
+        }
+        .add-tab-popup #addTabPopupClose,
+        .add-tab-popup #addTabPopupDone {
+            transition: all 150ms ease-in-out;
+        }
+        .add-tab-popup #addTabPopupDone {
+            right: 40px;
+        }
+        .add-tab-overlay {
+            position: fixed;
+            left: 0%;
+            top: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+    .notice {
+        position: fixed;        
+        left: 50%;
+        transform: translateX(-50%);
+        width: var(--default-width);
+        height: 50px;
+        border-radius: var(--default-br);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        background-color: var(--oppos-color-f);
+        color: var(--minor-color-n);
+        font-weight: bold;
+        animation: both showNotification 500ms,both hideNotification 3s;
+        z-index: 100;
+    }
+    .notice span {
+        position: absolute;
+        left: 10px;
+    }
+    @keyframes showNotification {
+        0%{
+            top: -50px;            
+        }
+
+        100%{
+            top: 35px;
+        }
+    }
+    
+    @keyframes hideNotification {
+        90%{           
+            opacity: 1;
+        }
+        100%{            
+            opacity: 0;
+        }
+    }
